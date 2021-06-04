@@ -15,8 +15,26 @@ const EMPLOYEE_GET_BY_ID = "EMPLOYEE_GET_BY_ID";
 const REF_EMPLOYEE = "REF_EMPLOYEE";
 
 // ACTIONS :: COmponents are interacting with this action
+
 export function createEmployeeAction(payload) {
-  return { type: EMPLOYEE_CREATE, payload: payload };
+  // return { type: EMPLOYEE_CREATE, payload: payload };
+
+  // MAKE SURE redux-thunk is installed.
+  return async (dispatch) => {
+    // WE HV TO CALL THE SPRINT1 / SPRING BOOT
+    const url = "http://localhost:8080/api/employee/";
+    const requestBody = { ...payload, age: 30 };
+
+    // HTTP Client
+    await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody),
+    });
+
+    // UPDATE THE UI
+    dispatch({ type: EMPLOYEE_CREATE, payload: payload });
+  };
 }
 
 export function updateEmployeeAction(payload) {

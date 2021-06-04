@@ -47,7 +47,7 @@ export function EmployeeUpsert() {
     setTimeout(() => setSuccessOperation(false), 5000);
 
     // A2: navigate to another page
-    history.push("/list-employee");
+    //history.push("/list-employee");
 
     // reset the form
     setFirstName("");
@@ -62,7 +62,7 @@ export function EmployeeUpsert() {
     <div className="row">
       <div className="col-3 col-md-3 d-none d-md-block"></div>
       <div className="col-12 col-md-6">
-        <h3 className="alert alert-secondary">
+        <h3 className="alert alert-info">
           {state.employee.refemp.userName
             ? "Update Employee"
             : "Create Employee"}
