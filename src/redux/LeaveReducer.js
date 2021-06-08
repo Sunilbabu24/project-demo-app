@@ -16,13 +16,15 @@ const REF_LEAVE = "REF_LEAVE";
 
 // ACTIONS :: COmponents are interacting with this action
 export function createLeaveAction(payload) {
-  return { type: LEAVE_CREATE, payload: payload };
+  // return { type: LEAVE_CREATE, payload: payload };
 
   // MAKE SURE redux-thunk is installed.
-  /* return async (dispatch) => {
+  return async (dispatch) => {
     // WE HV TO CALL THE SPRINT1 / SPRING BOOT
-    const url = "http://localhost:8080/api/employee/";
-    const requestBody = { ...payload, age: 30 };
+    const url = `http://localhost:8080/api/leave/apply/${payload.employeeId}`;
+    const requestBody = {
+      ...payload,
+    };
 
     // HTTP Client
     await fetch(url, {
@@ -32,16 +34,17 @@ export function createLeaveAction(payload) {
     });
 
     // UPDATE THE UI
-    dispatch({ type: EMPLOYEE_CREATE, payload: payload });
-  };*/
+    dispatch({ type: LEAVE_CREATE, payload: payload });
+  };
 }
 
 export function updateLeaveAction(payload) {
-  return { type: LEAVE_UPDATE, payload: payload };
-  /*return async (dispatch) => {
+  // return { type: LEAVE_UPDATE, payload: payload };
+  return async (dispatch) => {
     // WE HV TO CALL THE SPRINT1 / SPRING BOOT
-    const url = `http://localhost:8080/api/employee/${payload.id}`;
-    const requestBody = { ...payload, age: 25 };
+    const url = `http://localhost:8080/api/leave/update/
+    ${payload.leaveId}`;
+    const requestBody = { ...payload };
 
     await fetch(url, {
       method: "PUT",
@@ -50,51 +53,51 @@ export function updateLeaveAction(payload) {
     });
 
     // update the ui.
-    dispatch(updateRefEmployee({}));
-  };*/
+    dispatch(updateRefLeave({}));
+  };
 }
 
 export function deleteLeaveAction(payload) {
-  return { type: LEAVE_DELETE, payload: payload };
+  // return { type: LEAVE_DELETE, payload: payload };
 
   // redux thunk
-  /* return async (dispatch) => {
-    const url = `http://localhost:8080/api/employee/${payload.id}`;
+  return async (dispatch) => {
+    const url = `http://localhost:8080/api/leave/${payload.leaveId}`;
     await fetch(url, { method: "DELETE" });
 
     // update the ui.
-    dispatch(getAllEmployeeAction());
-  };*/
+    dispatch(getAllLeaveAction());
+  };
 }
 
 export function getAllLeaveAction(payload) {
-  return { type: LEAVE_GET_ALL, payload: payload };
+  //return { type: LEAVE_GET_ALL, payload: payload };
 
   // API CALL/BACKEND CALL / REDUX-THUNK IS THERE
-  /* return async (dispatch) => {
+  return async (dispatch) => {
     // WE HV TO CALL THE SPRINT1 / SPRING BOOT
-    const url = "http://localhost:8080/api/employee/";
+    const url = "http://localhost:8080/api/leave/all";
 
     // HTTP Client / POSTMAN / SWAGGER
     const response = await fetch(url);
-    const employeList = await response.json();
-    console.log(employeList);
+    const leaveList = await response.json();
+    console.log(leaveList);
 
     // Update the UI
-    dispatch({ type: EMPLOYEE_GET_ALL, payload: employeList });
-  };*/
+    dispatch({ type: LEAVE_GET_ALL, payload: leaveList });
+  };
 }
 
 export function getByIdLeaveAction(payload) {
-  return { type: LEAVE_GET_BY_ID, payload: payload };
-  /*return async (dispatch) => {
-    const url = `http://localhost:8080/api/employee/${payload.id}`;
+  //return { type: LEAVE_GET_BY_ID, payload: payload };
+  return async (dispatch) => {
+    const url = `http://localhost:8080/api/leave/${payload.leaveId}`;
     const response = await fetch(url);
-    const employeeObj = await response.json();
+    const leaveObj = await response.json();
 
     // this wil update the refemp
-    dispatch(updateRefEmployee(employeeObj));
-  };*/
+    dispatch(updateRefLeave(leaveObj));
+  };
 }
 
 export function updateRefLeave(payload) {

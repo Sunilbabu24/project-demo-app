@@ -18,9 +18,9 @@ export function LeaveList() {
   const [successOperation, setSuccessOperation] = useState(false);
 
   // Used to Initialize :: READ THE DATA FROM API
-  /*useEffect(() => {
+  useEffect(() => {
     dispatch(getAllLeaveAction());
-  }, []);*/
+  }, []);
 
   const deleteLeave = (item, index) => {
     dispatch(deleteLeaveAction(item));
@@ -59,16 +59,19 @@ export function LeaveList() {
                 <th scope="col">EMPLOYEEID</th>
                 <th scope="col">FROMDATE</th>
                 <th scope="col">TODATE</th>
+                <th scope="col">STATUS</th>
+
                 <th scope="col">ACTIONS</th>
               </tr>
             </thead>
             <tbody>
               {[...state.leave.list].map((item, index) => (
                 <tr key={index}>
-                  <th scope="row">{index + 1}</th>
+                  <th scope="row">{item.leaveId}</th>
                   <td>{item.employeeId}</td>
                   <td>{item.fromDate}</td>
                   <td>{item.toDate}</td>
+                  <td>{item.status}</td>
 
                   <td>
                     <input
@@ -80,7 +83,7 @@ export function LeaveList() {
                     /
                     <input
                       type="button"
-                      onClick={() => updateLeave(item, index)}
+                      onClick={() => updateLeave(item)}
                       value="Edit"
                       className="btn btn-link"
                     />
@@ -88,7 +91,7 @@ export function LeaveList() {
                     <input
                       type="button"
                       value="Delete"
-                      onClick={() => deleteLeave(item, index)}
+                      onClick={() => deleteLeave(item)}
                       className="btn btn-link text-danger"
                     />
                   </td>

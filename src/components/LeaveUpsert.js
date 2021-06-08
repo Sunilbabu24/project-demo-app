@@ -38,7 +38,7 @@ export function LeaveUpsert() {
     setTimeout(() => setSuccessOperation(false), 5000);
 
     // A2: navigate to another page
-    history.push("/list-leave");
+    // history.push("/list-leave");
 
     // reset the form
     setEmployeeId("");
@@ -67,7 +67,7 @@ export function LeaveUpsert() {
       <div className="col-3 col-md-3 d-none d-md-block"></div>
       <div className="col-12 col-md-6">
         <h3 className="alert alert-secondary">
-          {state.leave.reflev.leaveid ? "Update Leave" : "Apply Leave"}
+          {state.leave.reflev.leaveId ? "Update Leave" : "Apply Leave"}
         </h3>
 
         {/** BELOW THESE TWO TAGS MUST BE CONDITIOANL */}
@@ -106,7 +106,7 @@ export function LeaveUpsert() {
         </div>
 
         <div className="mb-1">
-          {state.leave.reflev.leaveid ? (
+          {state.leave.reflev.leaveId ? (
             <input
               type="button"
               className="btn btn-secondary w-100"
