@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import {
-  deleteEmployeeAction,
-  getAllEmployeeAction,
-  getByIdEmployeeAction,
-  updateRefEmployee,
-} from "../redux/EmployeeReducer";
-import { EmployeeModal } from "./EmployeeModal";
+  deleteLeaveAction,
+  getAllLeaveAction,
+  getByIdLeaveAction,
+  updateRefLeave,
+} from "../redux/LeaveReducer";
+import { LeaveModal } from "./LeaveModal";
 
-export function EmployeeList() {
+export function LeaveList() {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -18,27 +18,27 @@ export function EmployeeList() {
   const [successOperation, setSuccessOperation] = useState(false);
 
   // Used to Initialize :: READ THE DATA FROM API
-  useEffect(() => {
-    dispatch(getAllEmployeeAction());
-  }, []);
+  /*useEffect(() => {
+    dispatch(getAllLeaveAction());
+  }, []);*/
 
-  const deleteEmployee = (item, index) => {
-    dispatch(deleteEmployeeAction(item));
+  const deleteLeave = (item, index) => {
+    dispatch(deleteLeaveAction(item));
 
     setSuccessOperation(true);
     setTimeout(() => setSuccessOperation(false), 2000);
   };
 
-  const updateEmployee = (item) => {
+  const updateLeave = (item) => {
     // we are doing this so that we can access this objec in the form page
-    dispatch(updateRefEmployee(item));
+    dispatch(updateRefLeave(item));
 
     // form page
-    history.push("/create-employee");
+    history.push("/apply-leave");
   };
 
-  const getEmployeeById = (item) => {
-    dispatch(getByIdEmployeeAction(item));
+  const getLeaveById = (item) => {
+    dispatch(getByIdLeaveAction(item));
   };
 
   return (
@@ -46,7 +46,7 @@ export function EmployeeList() {
       <div className="row">
         <div className="col-3 col-md-2 d-none d-md-block"></div>
         <div className="col-12 col-md-8">
-          <h3 className="alert alert-secondary">Employee List</h3>
+          <h3 className="alert alert-secondary">Leave List</h3>
 
           {successOperation && (
             <div className="alert alert-success">Opeation Success</div>
@@ -55,33 +55,32 @@ export function EmployeeList() {
           <table className="table">
             <thead className="thead-dark">
               <tr>
-                <th scope="col">#ID</th>
-                <th scope="col">USERNAME</th>
-                <th scope="col">PASSWORD</th>
-                <th scope="col">EMAIL</th>
-                <th scope="col">MOBILE</th>
-                <th scope="col">Actions</th>
+                <th scope="col">#LEAVEID</th>
+                <th scope="col">EMPLOYEEID</th>
+                <th scope="col">FROMDATE</th>
+                <th scope="col">TODATE</th>
+                <th scope="col">ACTIONS</th>
               </tr>
             </thead>
             <tbody>
-              {[...state.employee.list].map((item, index) => (
+              {[...state.leave.list].map((item, index) => (
                 <tr key={index}>
-                  <th scope="row">{item.id}</th>
-                  <td>{item.userName}</td>
-                  <td>{"********"}</td>
-                  <td>{"****@gmail.com"}</td>
-                  <td>{item.mobile}</td>
+                  <th scope="row">{index + 1}</th>
+                  <td>{item.employeeId}</td>
+                  <td>{item.fromDate}</td>
+                  <td>{item.toDate}</td>
+
                   <td>
                     <input
                       type="button"
-                      onClick={() => getEmployeeById(item)}
+                      onClick={() => getLeaveById(item, index)}
                       value="Detail"
                       className="btn btn-link"
                     />
                     /
                     <input
                       type="button"
-                      onClick={() => updateEmployee(item)}
+                      onClick={() => updateLeave(item, index)}
                       value="Edit"
                       className="btn btn-link"
                     />
@@ -89,7 +88,7 @@ export function EmployeeList() {
                     <input
                       type="button"
                       value="Delete"
-                      onClick={() => deleteEmployee(item, index)}
+                      onClick={() => deleteLeave(item, index)}
                       className="btn btn-link text-danger"
                     />
                   </td>
@@ -101,8 +100,8 @@ export function EmployeeList() {
         <div className="col-3 col-md-2 d-none d-md-block"></div>
       </div>
 
-      {/** EMPLOYEE MODAL */}
-      <EmployeeModal />
+      {/** Leave MODAL */}
+      <LeaveModal />
     </>
   );
 }

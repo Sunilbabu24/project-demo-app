@@ -1,8 +1,8 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-import { EmployeeUpsert } from "./components/EmployeeUpsert";
-import { EmployeeList } from "./components/EmployeeList";
+import { LeaveUpsert } from "./components/LeaveUpsert";
+import { LeaveList } from "./components/LeaveList";
 import { AppNavBar } from "./common/AppNavBar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 function App() {
@@ -13,11 +13,11 @@ function App() {
         <Router>
           <AppNavBar />
           <Switch>
-            <Route path="/create-employee">
-              <EmployeeUpsert />
+            <Route path="/apply-leave">
+              <LeaveUpsert />
             </Route>
-            <Route path="/list-employee">
-              <EmployeeList />
+            <Route path="/list-leave">
+              <LeaveList />
             </Route>
           </Switch>
         </Router>

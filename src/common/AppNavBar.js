@@ -16,15 +16,15 @@ export function AppNavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml.-auto">
-            <Link to="/create-employee">
+            <Link to="/apply-leave">
               <Nav.Link href="#home">Home</Nav.Link>
             </Link>
-            <Link to="/create-employee">
-              <Nav.Link href="#link">CreateEmployee</Nav.Link>
+            <Link to="/apply-leave">
+              <Nav.Link href="#link">ApplyLeave</Nav.Link>
             </Link>
 
-            <Link to="/list-employee">
-              <Nav.Link href="#link">EmployeeList</Nav.Link>
+            <Link to="/list-leave">
+              <Nav.Link href="#link">LeaveList</Nav.Link>
             </Link>
           </Nav>
         </Navbar.Collapse>
