@@ -78,21 +78,21 @@ export function LeaveList() {
                       type="button"
                       onClick={() => getLeaveById(item, index)}
                       value="Detail"
-                      className="btn btn-link"
+                      className="btn btn-success"
                     />
-                    /
+
                     <input
                       type="button"
                       onClick={() => updateLeave(item)}
                       value="Edit"
-                      className="btn btn-link"
+                      className="btn btn-info"
                     />
-                    /
+
                     <input
                       type="button"
                       value="Delete"
                       onClick={() => deleteLeave(item)}
-                      className="btn btn-link text-danger"
+                      className="btn btn-danger text-dark"
                     />
                   </td>
                 </tr>

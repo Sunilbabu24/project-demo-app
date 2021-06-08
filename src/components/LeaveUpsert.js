@@ -92,6 +92,9 @@ export function LeaveUpsert() {
             onChange={(e) => updateFromDate(e)}
             className="form-control"
             placeholder="Enter from Date"
+            required
+            min="2021-06-08"
+            max="2021-12-31"
           />
         </div>
 
@@ -102,6 +105,9 @@ export function LeaveUpsert() {
             onChange={(e) => updateToDate(e)}
             className="form-control"
             placeholder="Enter To Date"
+            required
+            min="2021-06-09"
+            max="2021-12-31"
           />
         </div>
 
